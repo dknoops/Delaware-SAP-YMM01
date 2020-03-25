@@ -1,0 +1,58 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="ehb.YMM01_App.controller.Form"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Put expired batches in restricted use stock">
+				<content>
+					<Label text="Material" labelFor="mat"/>
+					<Select
+						id="mat"
+						forceSelection="false"
+						selectedKey="{/SelectedProduct}"
+						items="{
+							path: '/ProductCollection',
+							sorter: { path: 'Name' }
+						}">
+						<core:Item key="{ProductId}" text="{Name}" />
+					</Select>
+					
+					<Label text="Plant" labelFor="plant"/>
+					<Select
+						id="plant"
+						forceSelection="false"
+						selectedKey="{/SelectedProduct}"
+						items="{
+							path: '/ProductCollection',
+							sorter: { path: 'Name' }
+						}">
+						<core:Item key="{ProductId}" text="{Name}" />
+					</Select>
+					
+					<Label text="Batch" labelFor="batch"/>
+					<Select
+						id="batch"
+						forceSelection="false"
+						selectedKey="{/SelectedProduct}"
+						items="{
+							path: '/ProductCollection',
+							sorter: { path: 'Name' }
+						}">
+						<core:Item key="{ProductId}" text="{Name}" />
+					</Select>
+					
+					
+					<Label text="Local Date" labelFor="DP"/>
+					<DatePicker
+						id="DP"
+						placeholder="Enter Date ..."
+						valueFormat="yyyy-MM-dd" displayFormat="long"
+						change="handleChange"
+						class="sapUiSmallMarginBottom"/>
+						
+					<CheckBox text="Include charges without stock" selected="true"/>
+					<CheckBox text="Update"/>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

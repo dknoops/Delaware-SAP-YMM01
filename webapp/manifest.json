@@ -88,21 +88,21 @@
 				},
 				"async": true
 			},
-			"routes": [
-				{
-					"pattern": "",
-					"name": "master",
-					"target": "master"
-				},
-				{
-					"pattern": "batchSet/{objectId}",
-					"name": "object",
-					"target": [
-						"master",
-						"object"
-					]
-				}
-			],
+			"routes": [{
+				"name": "Form",
+				"pattern": "",
+				"titleTarget": "",
+				"greedy": false,
+				"target": ["Form"]
+			}, {
+				"pattern": "Beirend",
+				"name": "master",
+				"target": "master"
+			}, {
+				"pattern": "batchSet/{objectId}",
+				"name": "object",
+				"target": ["master", "object"]
+			}],
 			"targets": {
 				"master": {
 					"viewName": "Master",
@@ -123,8 +123,13 @@
 				"notFound": {
 					"viewName": "NotFound",
 					"viewId": "notFound"
+				},
+				"Form": {
+					"viewType": "XML",
+					"viewName": "Form"
 				}
 			}
-		}
+		},
+		"flexEnabled": true
 	}
 }
