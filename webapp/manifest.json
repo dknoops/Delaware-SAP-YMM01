@@ -11,18 +11,17 @@
 		},
 		"resources": "resources.json",
 		"dataSources": {
-			"mainService": {
-				"uri": "/SAPGateway/sap/opu/odata/sap/YMM01_SERVICE_SRV/",
+			"YMM01_DELAWARE_PROJECT_SRV": {
+				"uri": "/SAPGateway/sap/opu/odata/sap/YMM01_DELAWARE_PROJECT_SRV/",
 				"type": "OData",
 				"settings": {
-					"odataVersion": "2.0",
-					"localUri": "localService/metadata.xml"
+					"localUri": "localService/YMM01_DELAWARE_PROJECT_SRV/metadata.xml"
 				}
 			}
 		},
 		"sourceTemplate": {
-			"id": "sap.ui.ui5-template-plugin.2masterdetail",
-			"version": "1.76.0"
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
 		}
 	},
 	"sap.ui": {
@@ -72,7 +71,13 @@
 				}
 			},
 			"": {
-				"dataSource": "mainService",
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "Request"
+				},
+				"dataSource": "YMM01_DELAWARE_PROJECT_SRV",
 				"preload": true
 			}
 		},
@@ -126,7 +131,11 @@
 				},
 				"Form": {
 					"viewType": "XML",
-					"viewName": "Form"
+					"viewName": "Form",
+					"viewId": "form",
+					"controlId": "layout",
+					"viewLevel": 1,
+					"parent": ""
 				}
 			}
 		},

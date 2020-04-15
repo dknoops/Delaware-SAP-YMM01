@@ -42,7 +42,7 @@
         "type": "destination",
         "name": "SAPGateway"
       },
-      "description": "EhB SAP Gateway"
+      "description": "EhB SAP Gateway (B.H.)"
     }
   ],
   "welcomeFile": "/webapp/test/flpSandbox.html",
