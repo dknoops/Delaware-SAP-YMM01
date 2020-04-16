@@ -10,7 +10,7 @@
 		<pages>
 			<Page title="Put expired batches in restricted use stock">
 				<content>
-					<!--<Label text="Material" labelFor="mat"/>
+					<Label text="Material" labelFor="mat"/>
 					<Select
 						id="mat"
 						forceSelection="false"
@@ -56,34 +56,59 @@
 						class="sapUiSmallMarginBottom"/>
 						
 					<CheckBox text="Include charges without stock" selected="true"/>
-					<CheckBox text="Update"/>-->
+					<CheckBox text="Update"/>
 					
-					<VBox fitContainer="true">
-						<smartFilterBar:SmartFilterBar id="smartFilterBar" entitySet="batchSet" persistencyKey="SmartFilter_Explored" basicSearchFieldName="Matnr" enableBasicSearch="true" >
-							<smartFilterBar:controlConfiguration>
-								<smartFilterBar:ControlConfiguration key="Matnr" visibleInAdvancedArea="true">
-								
-								</smartFilterBar:ControlConfiguration>
-								<smartFilterBar:ControlConfiguration key="Werks" visibleInAdvancedArea="true">
-								
-								</smartFilterBar:ControlConfiguration>
-								<smartFilterBar:ControlConfiguration key="Charg" visibleInAdvancedArea="true">
-									
-								</smartFilterBar:ControlConfiguration>
-							</smartFilterBar:controlConfiguration>
-							<!-- layout data used to make the table growing but the filter bar fixed -->
-							<smartFilterBar:layoutData>
-								<FlexItemData shrinkFactor="0"/>
-							</smartFilterBar:layoutData>
-						</smartFilterBar:SmartFilterBar>
-						<smartTable:SmartTable initiallyVisibleFields="Matnr,Werks,Charg,Vfdat" id="LineItemsSmartTable" entitySet="batchSet" smartFilterId="smartFilterBar" tableType="Table" useExportToExcel="true"
-						  beforeExport="onBeforeExport" useVariantManagement="true" useTablePersonalisation="true" header="Batches" showRowCount="true" persistencyKey="SmartTableAnalytical_Explored" enableAutoBinding="true" class="sapUiResponsiveContentPadding">
-							<!-- layout data used to make the table growing but the filter bar fixed -->
-							<smartTable:layoutData>
-								<FlexItemData growFactor="1" baseSize="0%"/>
-							</smartTable:layoutData>
-						</smartTable:SmartTable>
-					</VBox>
+					<Table
+					  items="{path: '/batchSet'}">
+						<headerToolbar>
+							<Toolbar>
+								<Title
+									id="tableHeader"
+									text="Batches"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+						</headerToolbar>
+						
+						<columns>
+							<Column id="nameColumn">
+								<Text
+									id="nameColumnTitle"
+									text="Material"/>
+							</Column>
+							<Column
+								id="supplierNameColumn"
+								demandPopin="false"
+								minScreenWidth="Tablet">
+								<Text text="Batch"/>
+							</Column>
+							<Column
+								id="unitPriceColumn"
+								demandPopin="true"
+								minScreenWidth="Tablet">
+								<Text text="Plant"/>
+							</Column>
+							<Column id="unitsOnOrderColumn"
+								demandPopin="true"
+								minScreenWidth="Tablet"
+								hAlign="End">
+								<Text text="Expiry Date"/>
+							</Column>
+						</columns>
+						
+						<items>
+							<ColumnListItem
+							type="Navigation"
+							press=".onPress">
+								<cells>
+									<ObjectIdentifier
+										title="{Matnr}"/>
+									<Text text = "{Charg}"/>
+									<Text text = "{Werks}"/>
+									<Text text = "{Vfdat}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
 				</content>
 			</Page>
 		</pages>
