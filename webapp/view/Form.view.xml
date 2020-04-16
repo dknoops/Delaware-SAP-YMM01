@@ -10,42 +10,23 @@
 		<pages>
 			<Page title="Put expired batches in restricted use stock">
 				<content>
-					<Label text="Material" labelFor="mat"/>
-					<Select
-						id="mat"
-						forceSelection="false"
-						selectedKey="{/SelectedProduct}"
-						items="{
-							path: '/batchSet',
-							sorter: { path: 'Matnr' }
-						}">
-						<core:Item key="{Matnr}" text="{Matnr}" />
-					</Select>
+					<Label text="Material" labelFor="matInput"/>
+					<Input
+						id="matInput"
+						type="Text">
+					</Input>
 					
-					<Label text="Plant" labelFor="plant"/>
-					<Select
-						id="plant"
-						forceSelection="false"
-						selectedKey="{/SelectedProduct}"
-						items="{
-							path: '/batchSet',
-							sorter: { path: 'Werks' }
-						}">
-						<core:Item key="{Werks}" text="{Werks}" />
-					</Select>
+					<Label text="Plant" labelFor="plantInput"/>
+					<Input
+						id="plantInput"
+						type="Text">
+					</Input>
 					
-					<Label text="Batch" labelFor="batch"/>
-					<Select
-						id="batch"
-						forceSelection="false"
-						selectedKey="{/SelectedProduct}"
-						items="{
-							path: '/batchSet',
-							sorter: { path: 'Charg' }
-						}">
-						<core:Item key="{Charg}" text="{Charg}" />
-					</Select>
-					
+					<Label text="Batch" labelFor="batchInput"/>
+					<Input
+						id="batchInput"
+						type="Text">
+					</Input>
 					
 					<Label text="Local Date" labelFor="DP"/>
 					<DatePicker
@@ -97,14 +78,19 @@
 						
 						<items>
 							<ColumnListItem
-							type="Navigation"
+							type="Active"
 							press=".onPress">
 								<cells>
 									<ObjectIdentifier
 										title="{Matnr}"/>
 									<Text text = "{Charg}"/>
 									<Text text = "{Werks}"/>
-									<Text text = "{Vfdat}"/>
+									<Text text = "{
+										path: 'Vfdat', 
+										type: 'sap.ui.model.type.Date',
+										formatOptions: {
+											style: 'short'
+										}}"/>
 								</cells>
 							</ColumnListItem>
 						</items>
