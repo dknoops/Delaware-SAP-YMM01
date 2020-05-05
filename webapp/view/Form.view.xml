@@ -44,7 +44,8 @@
 					</VBox>
 					
 					<Table
-					  items="{path: '/batchSet'}">
+					  id="table"
+					  items="{path: '/batchSet'}">>
 						<headerToolbar>
 							<Toolbar>
 								<Title
