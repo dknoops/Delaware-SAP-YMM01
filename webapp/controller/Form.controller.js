@@ -17,9 +17,6 @@ sap.ui.define([
 		},
 		
 		executeForm: function(oEvent) {
-			//console.log(this.byId('form'));
-			//console.log(this.byId('form').mAggregations.items[0]);
-			console.log(this.byId('matInput').getValue());
 			var mat = this.byId("matInput").getValue();
 			var plant = this.byId("plantInput").getValue();
 			var batch = this.byId("batchInput").getValue();
