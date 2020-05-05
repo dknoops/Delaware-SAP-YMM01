@@ -62,7 +62,7 @@ sap.ui.define([
 			//UPDATEN
 			else{
 				var oModel = this.getOwnerComponent().getModel();
-				oModel.update("/batchSet(mandt=211, matnr=mat, werks=plant, charg=batch)", oData, {success: console.log("Succes!"), error: console.log("Error!")});
+				oModel.update("/batchSet(Mandt='211', Matnr='" + mat + "', Werks='" + plant + "', Charg= '" + batch + "')", oData, {success: console.log("Succes!"), error: console.log("Error!")});
 			}
 		},
 
