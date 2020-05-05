@@ -46,10 +46,10 @@ sap.ui.define([
 					filters.push(new Filter("Matnr", FilterOperator.EQ, mat));
 				}
 				if (plant !== ""){
-					filters.push(new Filter("Werks", FilterOperator.Contains, plant));
+					filters.push(new Filter("Werks", FilterOperator.EQ, plant));
 				}
 				if (batch !== ""){
-					filters.push(new Filter("Charg", FilterOperator.Contains, batch));
+					filters.push(new Filter("Charg", FilterOperator.EQ, batch));
 				}
 				/*if (date){
 					filters.push(new Filter("Matnr", FilterOperator.Contains, mat));
