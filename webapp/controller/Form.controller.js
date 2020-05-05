@@ -27,6 +27,18 @@ sap.ui.define([
 			var withoutStock = this.byId("isWithoutStock").getSelected();
 			var update = this.byId("isUpdate").getSelected();
 			
+			var oData = {
+				matnr: mat,
+				werks: plant,
+				charg: batch,
+				date: date,
+				zeros: withoutStock,
+				updat: update,
+				reaso: "batch expired"
+			}
+			
+			console.log(oData);
+			
 			//DISPLAYEN
 			if(!update) {
 				var filters = [];
@@ -52,7 +64,8 @@ sap.ui.define([
 			}
 			//UPDATEN
 			else{
-				
+				var oModel = this.getOwnerComponent().getModel();
+				oModel.update("/batchSet(mandt=211, matnr=mat, werks=plant, charg=batch)", oData, {success: console.log("Succes!"), error: console.log("Error!")});
 			}
 		},
 
