@@ -10,34 +10,38 @@
 		<pages>
 			<Page title="Put expired batches in restricted use stock">
 				<content>
-					<Label text="Material" labelFor="matInput"/>
-					<Input
-						id="matInput"
-						type="Text">
-					</Input>
-					
-					<Label text="Plant" labelFor="plantInput"/>
-					<Input
-						id="plantInput"
-						type="Text">
-					</Input>
-					
-					<Label text="Batch" labelFor="batchInput"/>
-					<Input
-						id="batchInput"
-						type="Text">
-					</Input>
-					
-					<Label text="Local Date" labelFor="DP"/>
-					<DatePicker
-						id="DP"
-						placeholder="Enter Date ..."
-						valueFormat="yyyy-MM-dd" displayFormat="long"
-						change="handleChange"
-						class="sapUiSmallMarginBottom"/>
+					<VBox id="form">
+						<Label text="Material" labelFor="matInput"/>
+						<Input
+							id="matInput"
+							type="Text">
+						</Input>
 						
-					<CheckBox text="Include charges without stock" selected="true"/>
-					<CheckBox text="Update"/>
+						<Label text="Plant" labelFor="plantInput"/>
+						<Input
+							id="plantInput"
+							type="Text">
+						</Input>
+						
+						<Label text="Batch" labelFor="batchInput"/>
+						<Input
+							id="batchInput"
+							type="Text">
+						</Input>
+						
+						<Label text="Local Date" labelFor="DP"/>
+						<DatePicker
+							id="DP"
+							placeholder="Enter Date ..."
+							valueFormat="yyyy-MM-dd" displayFormat="long"
+							change="handleChange"
+							class="sapUiSmallMarginBottom"/>
+							
+						<CheckBox id="isWithoutStock" text="Include charges without stock" selected="true"/>
+						<CheckBox id="isUpdate" text="Update"/>
+						
+						<Button text="Execute" press="executeForm"></Button>
+					</VBox>
 					
 					<Table
 					  items="{path: '/batchSet'}">
