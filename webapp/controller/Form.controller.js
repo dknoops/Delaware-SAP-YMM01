@@ -13,6 +13,46 @@ sap.ui.define([
 		onInit: function () {
 
 		},
+		
+		executeForm: function(oEvent) {
+			//console.log(this.byId('form'));
+			//console.log(this.byId('form').mAggregations.items[0]);
+			console.log(this.byId('matInput').getValue());
+			var mat = this.byId("matInput").getValue();
+			var plant = this.byId("plantInput").getValue();
+			var batch = this.byId("batchInput").getValue();
+			var date = this.byId("DP").getValue();
+			var withoutStock = this.byId("isWithoutStock").getSelected();
+			var update = this.byId("isUpdate").getSelected();
+			
+			//DISPLAYEN
+			if(!update) {
+				var filters = [];
+				if (mat !== ""){
+					filters.push(new Filter("Matnr", FilterOperator.EQ, mat));
+				}
+				if (plant !== ""){
+					filters.push(new Filter("Werks", FilterOperator.Contains, plant));
+				}
+				if (batch !== ""){
+					filters.push(new Filter("Charg", FilterOperator.Contains, batch));
+				}
+				/*if (date){
+					filters.push(new Filter("Matnr", FilterOperator.Contains, mat));
+				}*/
+				
+				console.log(filters);
+				
+				var table = this.getView().byId("table");
+				console.log(table);
+				console.log(table.getBinding("items"));
+				table.getBinding("items").filter(filters);
+			}
+			//UPDATEN
+			else{
+				
+			}
+		},
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
