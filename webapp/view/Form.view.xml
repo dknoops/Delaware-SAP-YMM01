@@ -45,7 +45,7 @@
 					
 					<Table
 					  id="table"
-					  items="{path: '/batchSet'}">>
+					  items="{path: '/batchSet'}">
 						<headerToolbar>
 							<Toolbar>
 								<Title
@@ -91,11 +91,11 @@
 									<Text text = "{Charg}"/>
 									<Text text = "{Werks}"/>
 									<Text text = "{
-										path: 'Vfdat', 
-										type: 'sap.ui.model.type.Date',
-										formatOptions: {
-											style: 'short'
-										}}"/>
+									path: 'Vfdat', 
+									type: 'sap.ui.model.type.Date',
+									formatOptions: {
+										style: 'short'
+									}}"/>
 								</cells>
 							</ColumnListItem>
 						</items>
