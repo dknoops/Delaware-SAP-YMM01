@@ -48,14 +48,14 @@ sap.ui.define([
 				if (batch !== ""){
 					filters.push(new Filter("Charg", FilterOperator.EQ, batch));
 				}
-				/*if (date){
-					filters.push(new Filter("Matnr", FilterOperator.Contains, mat));
-				}*/
+				if (date){
+					filters.push(new Filter("Vfdat", FilterOperator.LE, date));
+				}
 				
-				console.log(filters);
+				//console.log(filters);
 				
 				var table = this.getView().byId("table");
-				console.log(table);
+				//console.log(table);
 				console.log(table.getBinding("items"));
 				table.getBinding("items").filter(filters);
 			}
