@@ -59,6 +59,11 @@ sap.ui.define([
 					//Success message
 					var msg = 'Batch succesfully updated.';
 					MessageToast.show(msg);
+					this.byId("matInput").setValue("");
+					this.byId("plantInput").setValue("");
+					this.byId("batchInput").setValue("");
+					this.byId("DP").setValue("");
+					this.byId("isUpdate").setSelected(false);
 				}, 1500);
 
 			}
