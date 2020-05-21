@@ -24,14 +24,14 @@ sap.ui.define([
 			var withoutStock = this.byId("isWithoutStock").getSelected();
 			var update = this.byId("isUpdate").getSelected();
 			
+			date = date + "T00:00:00";
+			
 			var oData = {
-				matnr: mat,
-				werks: plant,
-				charg: batch,
-				date: date,
-				zeros: withoutStock,
-				updat: update,
-				reaso: "batch expired"
+				Matnr: mat,
+				Werks: plant,
+				Charg: batch,
+				Vfdat: date,
+				Zustd: true
 			}
 			
 			console.log(oData);
@@ -62,7 +62,7 @@ sap.ui.define([
 			//UPDATEN
 			else{
 				var oModel = this.getOwnerComponent().getModel();
-				oModel.update("/batchSet(Mandt='211', Matnr='" + mat + "', Werks='" + plant + "', Charg= '" + batch + "')", oData, {success: console.log("Succes!"), error: console.log("Error!")});
+				oModel.update("/batchSet(Mandt='211',Matnr='" + mat + "',Werks='" + plant + "',Charg='" + batch + "')", oData);
 			}
 		},
 
