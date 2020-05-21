@@ -25,18 +25,10 @@ sap.ui.define([
 			var update = this.byId("isUpdate").getSelected();
 			
 			var oData = {
-<<<<<<< HEAD
-				Matnr: mat,
-				Werks: plant,
-				Charg: batch,
-				Vfdat: date,
-				Zustd: 1
-=======
 				//Matnr: mat,
 				//Werks: plant,
 				//Charg: batch,
 				"Zustd": "1"
->>>>>>> refs/heads/master
 			}
 			
 			console.log(oData);
