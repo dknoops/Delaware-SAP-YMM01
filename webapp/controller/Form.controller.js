@@ -31,7 +31,7 @@ sap.ui.define([
 				Werks: plant,
 				Charg: batch,
 				Vfdat: date,
-				Zustd: true
+				Zustd: 1
 			}
 			
 			console.log(oData);
