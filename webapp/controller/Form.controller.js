@@ -24,14 +24,11 @@ sap.ui.define([
 			var withoutStock = this.byId("isWithoutStock").getSelected();
 			var update = this.byId("isUpdate").getSelected();
 			
-			date = date + "T00:00:00";
-			
 			var oData = {
-				Matnr: mat,
-				Werks: plant,
-				Charg: batch,
-				Vfdat: date,
-				Zustd: true
+				//Matnr: mat,
+				//Werks: plant,
+				//Charg: batch,
+				"Zustd": "1"
 			}
 			
 			console.log(oData);
@@ -56,11 +53,12 @@ sap.ui.define([
 				
 				var table = this.getView().byId("table");
 				//console.log(table);
-				console.log(table.getBinding("items"));
+				//console.log(table.getBinding("items"));
 				table.getBinding("items").filter(filters);
 			}
 			//UPDATEN
 			else{
+				date = date + "T00:00:00";
 				var oModel = this.getOwnerComponent().getModel();
 				oModel.update("/batchSet(Mandt='211',Matnr='" + mat + "',Werks='" + plant + "',Charg='" + batch + "')", oData);
 			}
