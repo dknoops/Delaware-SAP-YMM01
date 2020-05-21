@@ -28,36 +28,35 @@ sap.ui.define([
 				"Zustd": "1"
 			}
 			
-			console.log(oData);
-			
-			//DISPLAYEN
-			if(!update) {
-				var filters = [];
-				if (mat !== ""){
-					filters.push(new Filter("Matnr", FilterOperator.EQ, mat));
-				}
-				if (plant !== ""){
-					filters.push(new Filter("Werks", FilterOperator.EQ, plant));
-				}
-				if (batch !== ""){
-					filters.push(new Filter("Charg", FilterOperator.EQ, batch));
-				}
-				if (date){
-					filters.push(new Filter("Vfdat", FilterOperator.LE, date));
-				}
-				
-				//console.log(filters);
-				
-				var table = this.getView().byId("table");
-				//console.log(table);
-				//console.log(table.getBinding("items"));
-				table.getBinding("items").filter(filters);
+			var filters = [];
+			if (mat !== ""){
+				filters.push(new Filter("Matnr", FilterOperator.EQ, mat));
 			}
+			if (plant !== ""){
+				filters.push(new Filter("Werks", FilterOperator.EQ, plant));
+			}
+			if (batch !== ""){
+				filters.push(new Filter("Charg", FilterOperator.EQ, batch));
+			}
+			if (date){
+				filters.push(new Filter("Vfdat", FilterOperator.LE, date));
+			}
+			
+			var table = this.getView().byId("table");
+			table.getBinding("items").filter(filters);
+			
 			//UPDATEN
-			else{
-				date = date + "T00:00:00";
+			if (update) {
 				var oModel = this.getOwnerComponent().getModel();
-				oModel.update("/batchSet(Mandt='211',Matnr='" + mat + "',Werks='" + plant + "',Charg='" + batch + "')", oData);
+				oModel.setUseBatch(true);
+				setTimeout(() => {
+					for (let x = 0; x < table.getBinding("items").aKeys.length; x++) {
+						oModel.update("/" + table.getBinding("items").aKeys[x], oData);
+					}
+				    oModel.submitChanges();
+				    //Success message
+				}, 1500);
+				
 			}
 		},
 
