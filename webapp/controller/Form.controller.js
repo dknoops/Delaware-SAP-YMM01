@@ -25,11 +25,7 @@ sap.ui.define([
 			var update = this.byId("isUpdate").getSelected();
 			
 			var oData = {
-				Matnr: mat,
-				Werks: plant,
-				Charg: batch,
-				Vfdat: date,
-				Zustd: 1
+				"Zustd": "1"
 			}
 			
 			console.log(oData);
