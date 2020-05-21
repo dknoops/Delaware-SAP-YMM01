@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (Controller, Filter, FilterOperator) {
+	"sap/ui/model/FilterOperator",
+	"sap/m/MessageToast"
+], function (Controller, Filter, FilterOperator, MessageToast) {
 	"use strict";
 
 	return Controller.extend("ehb.YMM01_App.controller.Form", {
@@ -15,8 +16,8 @@ sap.ui.define([
 		onInit: function () {
 
 		},
-		
-		executeForm: function(oEvent) {
+
+		executeForm: function (oEvent) {
 			var mat = this.byId("matInput").getValue();
 			var plant = this.byId("plantInput").getValue();
 			var batch = this.byId("batchInput").getValue();
@@ -24,28 +25,28 @@ sap.ui.define([
 			//<CheckBox id="isWithoutStock" text="Include charges without stock" selected="true"/>
 			//var withoutStock = this.byId("isWithoutStock").getSelected();
 			var update = this.byId("isUpdate").getSelected();
-			
+
 			var oData = {
 				"Zustd": "1"
 			}
-			
+
 			var filters = [];
-			if (mat !== ""){
+			if (mat !== "") {
 				filters.push(new Filter("Matnr", FilterOperator.EQ, mat));
 			}
-			if (plant !== ""){
+			if (plant !== "") {
 				filters.push(new Filter("Werks", FilterOperator.EQ, plant));
 			}
-			if (batch !== ""){
+			if (batch !== "") {
 				filters.push(new Filter("Charg", FilterOperator.EQ, batch));
 			}
-			if (date){
+			if (date) {
 				filters.push(new Filter("Vfdat", FilterOperator.LE, date));
 			}
-			
+
 			var table = this.getView().byId("table");
 			table.getBinding("items").filter(filters);
-			
+
 			//UPDATEN
 			if (update) {
 				var oModel = this.getOwnerComponent().getModel();
@@ -54,10 +55,12 @@ sap.ui.define([
 					for (let x = 0; x < table.getBinding("items").aKeys.length; x++) {
 						oModel.update("/" + table.getBinding("items").aKeys[x], oData);
 					}
-				    oModel.submitChanges();
-				    //Success message
+					oModel.submitChanges();
+					//Success message
+					var msg = 'Batch succesfully updated.';
+					MessageToast.show(msg);
 				}, 1500);
-				
+
 			}
 		},
 
