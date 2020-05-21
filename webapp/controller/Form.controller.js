@@ -21,7 +21,8 @@ sap.ui.define([
 			var plant = this.byId("plantInput").getValue();
 			var batch = this.byId("batchInput").getValue();
 			var date = this.byId("DP").getValue();
-			var withoutStock = this.byId("isWithoutStock").getSelected();
+			//<CheckBox id="isWithoutStock" text="Include charges without stock" selected="true"/>
+			//var withoutStock = this.byId("isWithoutStock").getSelected();
 			var update = this.byId("isUpdate").getSelected();
 			
 			var oData = {

@@ -37,7 +37,6 @@
 							change="handleChange"
 							class="sapUiSmallMarginBottom"/>
 							
-						<CheckBox id="isWithoutStock" text="Include charges without stock" selected="true"/>
 						<CheckBox id="isUpdate" text="Update"/>
 						
 						<Button text="Execute" press="executeForm"></Button>
