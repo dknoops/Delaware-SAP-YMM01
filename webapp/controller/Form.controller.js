@@ -27,7 +27,7 @@ sap.ui.define([
 			var update = this.byId("isUpdate").getSelected();
 
 			var oData = {
-				"Zustd": "1"
+				"Zustd": "X"
 			}
 
 			var filters = [];
@@ -45,15 +45,15 @@ sap.ui.define([
 			}
 
 			var table = this.getView().byId("table");
-			table.getBinding("items").filter(filters);
+			table.getBinding("rows").filter(filters);
 
 			//UPDATEN
 			if (update) {
 				var oModel = this.getOwnerComponent().getModel();
 				oModel.setUseBatch(true);
 				setTimeout(() => {
-					for (let x = 0; x < table.getBinding("items").aKeys.length; x++) {
-						oModel.update("/" + table.getBinding("items").aKeys[x], oData);
+					for (let x = 0; x < table.getBinding("rows").aKeys.length; x++) {
+						oModel.update("/" + table.getBinding("rows").aKeys[x], oData);
 					}
 					oModel.submitChanges();
 					//Success message
