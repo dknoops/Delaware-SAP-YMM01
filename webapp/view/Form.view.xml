@@ -5,42 +5,60 @@
 	controllerName="ehb.YMM01_App.controller.Form"
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
-	xmlns:smartTable="sap.ui.comp.smarttable">
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:fb="sap.ui.comp.filterbar">
 	<App>
 		<pages>
 			<Page title="Put expired batches in restricted use stock">
 				<content>
-					<VBox id="form">
-						<Label text="Material" labelFor="matInput"/>
-						<Input
-							id="matInput"
-							type="Text">
-						</Input>
-						
-						<Label text="Plant" labelFor="plantInput"/>
-						<Input
-							id="plantInput"
-							type="Text">
-						</Input>
-						
-						<Label text="Batch" labelFor="batchInput"/>
-						<Input
-							id="batchInput"
-							type="Text">
-						</Input>
-						
-						<Label text="Local Date" labelFor="DP"/>
-						<DatePicker
-							id="DP"
-							placeholder="Enter Date ..."
-							valueFormat="yyyy-MM-dd" displayFormat="long"
-							change="handleChange"
-							class="sapUiSmallMarginBottom"/>
+					<fb:FilterBar search="onSearch" showGoOnFB="false" searchEnabled="false" showRestoreButton="false">
+						<fb:filterGroupItems>
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="A" label="Material" labelTooltip="Tooltip" partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>
+									<Input
+										id="matInput"
+										type="Text">
+									</Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+			
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="B" label="Plant" labelTooltip="Tooltip" partOfCurrentVariant="true" visibleInFilterBar="false">
+								<fb:control>
+									<Input
+										id="plantInput"
+										type="Text">
+									</Input>
+								</fb:control>
+							</fb:FilterGroupItem>
+			
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="C" label="Batch" labelTooltip="Tooltip" partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>
+									<Input
+										id="batchInput"
+										type="Text">
+									</Input>
+								</fb:control>				
+							</fb:FilterGroupItem>
 							
-						<CheckBox id="isUpdate" text="Update"/>
-						
-						<Button text="Execute" press="executeForm"></Button>
-					</VBox>
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="D" label="Local Date" labelTooltip="Tooltip" partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>
+									<DatePicker
+										id="DP"
+										placeholder="Enter Date ..."
+										valueFormat="yyyy-MM-dd" displayFormat="long"
+										change="handleChange"
+										class="sapUiSmallMarginBottom"/>
+								</fb:control>				
+							</fb:FilterGroupItem>			
+							
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="E" label="Update" labelTooltip="Tooltip" partOfCurrentVariant="true" visibleInFilterBar="true">
+								<fb:control>
+									<CheckBox id="isUpdate"/>
+								</fb:control>				
+							</fb:FilterGroupItem>
+						</fb:filterGroupItems>				
+								
+				    </fb:FilterBar>
 					
 					<Table
 					  id="table"
@@ -100,6 +118,15 @@
 						</items>
 					</Table>
 				</content>
+				
+				<footer>
+					<OverflowToolbar id="otbFooter">
+						<ToolbarSpacer/>
+						<Button type="Emphasized" text="Execute" press="executeForm">
+							<layoutData><OverflowToolbarLayoutData priority="NeverOverflow" /></layoutData>
+						</Button>
+					</OverflowToolbar>
+				</footer>
 			</Page>
 		</pages>
 	</App>
