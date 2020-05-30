@@ -6,7 +6,8 @@
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 	xmlns:smartTable="sap.ui.comp.smarttable"
-	xmlns:fb="sap.ui.comp.filterbar">
+	xmlns:fb="sap.ui.comp.filterbar"
+	xmlns:t="sap.ui.table">
 	<App>
 		<pages>
 			<Page title="Put expired batches in restricted use stock">
@@ -60,63 +61,61 @@
 								
 				    </fb:FilterBar>
 					
-					<Table
+					<t:Table
 					  id="table"
-					  items="{path: '/batchSet'}">
-						<headerToolbar>
-							<Toolbar>
-								<Title
-									id="tableHeader"
-									text="Batches"/>
-								<ToolbarSpacer/>
-							</Toolbar>
-						</headerToolbar>
+					  rows="{path: '/batchSet', sorter: { path: 'Vfdat', descending: false}}">
+						<t:extension>
+							<OverflowToolbar>
+								<Toolbar>
+									<Title
+										id="tableHeader"
+										text="Batches"/>
+									<ToolbarSpacer/>
+								</Toolbar>
+							</OverflowToolbar>
+						</t:extension>
 						
-						<columns>
-							<Column id="nameColumn">
-								<Text
-									id="nameColumnTitle"
-									text="Material"/>
-							</Column>
-							<Column
-								id="supplierNameColumn"
-								demandPopin="false"
-								minScreenWidth="Tablet">
-								<Text text="Batch"/>
-							</Column>
-							<Column
-								id="unitPriceColumn"
-								demandPopin="true"
-								minScreenWidth="Tablet">
-								<Text text="Plant"/>
-							</Column>
-							<Column id="unitsOnOrderColumn"
-								demandPopin="true"
-								minScreenWidth="Tablet"
-								hAlign="End">
-								<Text text="Expiry Date"/>
-							</Column>
-						</columns>
-						
-						<items>
-							<ColumnListItem
-							type="Active"
-							press=".onPress">
-								<cells>
-									<ObjectIdentifier
-										title="{Matnr}"/>
-									<Text text = "{Charg}"/>
-									<Text text = "{Werks}"/>
+						<t:columns>
+							<t:Column 
+								id="material"
+								sortProperty="Matnr">
+								<Label text="Material" />
+								<t:template>
+									<Text text="{Matnr}" wrapping="false" />
+								</t:template>
+							</t:Column>
+							<t:Column
+								id="batch"
+								sortProperty="Charg">
+								<Label text="Batch" />
+								<t:template>
+									<Text text="{Charg}" wrapping="false" />
+								</t:template>
+							</t:Column>
+							<t:Column
+								id="plant"
+								sortProperty="Werks">
+								<Label text="Plant" />
+								<t:template>
+									<Text text="{Werks}" wrapping="false" />
+								</t:template>
+							</t:Column>
+							<t:Column 
+								id="date"
+								sortProperty="Vfdat"
+								sorted="true">
+								<Label text="Expiry Date" />
+								<t:template>
 									<Text text = "{
 									path: 'Vfdat', 
 									type: 'sap.ui.model.type.Date',
 									formatOptions: {
 										style: 'short'
 									}}"/>
-								</cells>
-							</ColumnListItem>
-						</items>
-					</Table>
+								</t:template>
+							</t:Column>
+						</t:columns>
+					</t:Table>
 				</content>
 				
 				<footer>
